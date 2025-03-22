@@ -1,19 +1,9 @@
-import React, { useState} from 'react';
+import React from 'react';
 import {Text} from 'react-native';
 import styles from './style';
 
-const Title = () => {
-  const [state, setState] = useState('');
-
-  const onTextPress = () => {
-    setState('updated state');
-  };
-
-  return (
-    <Text onPress={onTextPress} style={styles.title}>
-      {state}
-    </Text>
-  );
+const Title = ({text,style}) => {
+  return <Text style={[styles.title, style]}>{text}</Text>;
 };
 
 export default React.memo(Title);
