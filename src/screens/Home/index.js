@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { useNavigation } from '@react-navigation/native';
 import {FlatList, View, Text} from 'react-native';
 import Title from '../../components/Title/index';
 import styles from './styles';
@@ -8,7 +9,8 @@ import jsonData from '../../data/attraction.json';
 import categories from '../../data/categories.json';
 const ALL = 'All';
 
-const Home = ({navigation}) => {
+const Home = () => {
+  const navigation = useNavigation();
   const [selectedCategory, setSelectedCategory] = useState(ALL);
   const [data, setData] = useState([]);
 
@@ -53,7 +55,7 @@ const Home = ({navigation}) => {
       keyExtractor={item => String(item?.id)}
       renderItem={({item, index}) => (
         <AttractionCard
-          onPress={() => navigation.navigate('AttractionDetails')}
+          onPress={() => navigation.navigate('AttractionDetails',{item})}
           style={
             index % 2 === 0
               ? {marginRight: 12, marginLeft: 32}

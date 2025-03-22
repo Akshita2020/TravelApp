@@ -2,10 +2,12 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import styles from './styles';
 
-const AttreactionDetails = () => {
+const AttreactionDetails = ({navigation, route}) => {
+  const {item} = route?.params || {};
   return (
     <View>
-      <Text>Attractection Details</Text>
+      <Text onPress={() => navigation.goBack()}>Go Back</Text>
+      <Text>{item.name}</Text>
     </View>
   );
 };
