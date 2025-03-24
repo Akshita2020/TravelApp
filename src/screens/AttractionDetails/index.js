@@ -1,15 +1,12 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  ImageBackground,
-  Image,
-  Pressable,
-} from 'react-native';
+import {View, Text, ImageBackground, Image, Pressable} from 'react-native';
 import styles from './styles';
 import Title from '../../components/Title';
 import BackButton from '../../assets/Back.png';
 import ShareButton from '../../assets/share.png';
+import InfoCard from '../../components/InfoCard';
+import location from '../../assets/location.png';
+import schedules from '../../assets/schedules.png';
 
 const AttreactionDetails = ({navigation, route}) => {
   const {item} = route?.params || {};
@@ -52,11 +49,17 @@ const AttreactionDetails = ({navigation, route}) => {
       </ImageBackground>
       <View style={styles.headerContainer}>
         <View>
-          <Title style={styles.title} text={item?.name} />
+          <Title text={item?.name} style={styles.title} />
           <Text style={styles.city}>{item?.city}</Text>
         </View>
         <Title style={styles.title} text={item?.entry_price} />
       </View>
+      <InfoCard text={item?.address} icon={location} />
+      <InfoCard
+        text={` OPEN
+ ${item?.opening_time} - ${item?.closing_time}`}
+        icon={schedules}
+      />
     </View>
   );
 };
