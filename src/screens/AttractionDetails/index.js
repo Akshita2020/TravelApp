@@ -1,6 +1,13 @@
 import React from 'react';
-import {View, Text, ImageBackground, Image, Pressable} from 'react-native';
+import {
+  View,
+  Text,
+  ImageBackground,
+  Image,
+  Pressable,
+} from 'react-native';
 import styles from './styles';
+import Title from '../../components/Title';
 import BackButton from '../../assets/Back.png';
 import ShareButton from '../../assets/share.png';
 
@@ -43,7 +50,13 @@ const AttreactionDetails = ({navigation, route}) => {
           ))}
         </Pressable>
       </ImageBackground>
-      <Text>{item.name}</Text>
+      <View style={styles.headerContainer}>
+        <View>
+          <Title style={styles.title} text={item?.name} />
+          <Text style={styles.city}>{item?.city}</Text>
+        </View>
+        <Title style={styles.title} text={item?.entry_price} />
+      </View>
     </View>
   );
 };

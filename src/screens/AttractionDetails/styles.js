@@ -62,6 +62,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  headerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginVertical: 40,
+  },
+  title: {
+    color: '#000',
+  },
+  city: {
+    fontSize: 20,
+    color: '#000',
+    fontWeight: '400',
+    marginTop: 8,
+  },
 });
 
 export default styles;
