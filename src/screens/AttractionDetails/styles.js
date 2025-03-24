@@ -18,13 +18,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    // padding: 16,
   },
   icon: {
     height: 36,
     width: 36,
     margin: 16,
   },
+  iconConatiner: {
+    backgroundColor: 'white',
+    borderRadius: 50,
+    margin: 10,
+  },
+
   footer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -32,13 +37,30 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     backgroundColor: 'rgba(256,256,256,0.35)',
     margin: 16,
-    paddingHorizontal: 8,
+    paddingHorizontal: 4,
   },
   miniImage: {
     height: 40,
     width: 40,
-    margin: 8,
     borderRadius: 10,
+    marginHorizontal: 4,
+    marginVertical: 8,
+  },
+  moreImage: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 20,
+  },
+  moreImagesContainer: {
+    position: 'absolute',
+    backgroundColor: 'rgba(0,0,0,0.38)',
+    height: 40,
+    width: 40,
+    top: 8,
+    left: 4,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

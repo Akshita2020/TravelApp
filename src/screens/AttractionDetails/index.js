@@ -10,6 +10,12 @@ const AttreactionDetails = ({navigation, route}) => {
   const onBack = () => {
     navigation.goBack();
   };
+  const onGalleryNavigate = () => {
+    navigation.navigate('Gallery', {images: item?.images});
+  };
+  const slicedImage = item?.images?.length ? item?.images?.slice(0, 5) : [];
+  const diffImages = item?.images?.length - slicedImage.length;
+
   return (
     <View style={styles.conatiner}>
       <ImageBackground
@@ -17,18 +23,25 @@ const AttreactionDetails = ({navigation, route}) => {
         imageStyle={{borderRadius: 20}}
         source={{uri: mainImage}}>
         <View style={styles.header}>
-          <Pressable onPress={onBack} hitSlop={8}>
+          <Pressable onPress={onBack} hitSlop={8} style={styles.iconConatiner}>
             <Image style={styles.icon} source={BackButton} />
           </Pressable>
-          <Pressable hitSlop={8}>
+          <Pressable style={styles.iconConatiner} hitSlop={8}>
             <Image style={styles.icon} source={ShareButton} />
           </Pressable>
         </View>
-        <View style={styles.footer}>
-          {item?.images?.length ? item?.images?.map(image =>(
-            <Image key={image} source={{uri:image}} style={styles.miniImage}/>
-          )):null}
-        </View>
+        <Pressable onPress={onGalleryNavigate} style={styles.footer}>
+          {slicedImage.map((image, index) => (
+            <View key={image}>
+              <Image source={{uri: image}} style={styles.miniImage} />
+              {diffImages > 0 && index === slicedImage?.length - 1 ? (
+                <View style={styles.moreImagesContainer}>
+                  <Text style={styles.moreImage}>{`+${diffImages}`}</Text>
+                </View>
+              ) : null}
+            </View>
+          ))}
+        </Pressable>
       </ImageBackground>
       <Text>{item.name}</Text>
     </View>
