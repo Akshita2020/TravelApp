@@ -5,8 +5,8 @@ import Title from '../../components/Title';
 import BackButton from '../../assets/Back.png';
 import ShareButton from '../../assets/share.png';
 import InfoCard from '../../components/InfoCard';
-import location from '../../assets/location.png';
 import schedules from '../../assets/schedules.png';
+import locations from '../../assets/locations.png';
 
 const AttreactionDetails = ({navigation, route}) => {
   const {item} = route?.params || {};
@@ -54,7 +54,7 @@ const AttreactionDetails = ({navigation, route}) => {
         </View>
         <Title style={styles.title} text={item?.entry_price} />
       </View>
-      <InfoCard text={item?.address} icon={location} />
+      <InfoCard text={item?.address} icon={locations} />
       <InfoCard
         text={` OPEN
  ${item?.opening_time} - ${item?.closing_time}`}
