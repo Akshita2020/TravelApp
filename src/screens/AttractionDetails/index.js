@@ -25,6 +25,9 @@ const AttreactionDetails = ({navigation, route}) => {
   const onGalleryNavigate = () => {
     navigation.navigate('Gallery', {images: item?.images});
   };
+  const onMapNavigate = () => {
+    navigation.navigate('Map', {item});
+  };
   const slicedImage = item?.images?.length ? item?.images?.slice(0, 5) : [];
   const diffImages = item?.images?.length - slicedImage.length;
   const openingHours = ` OPEN
@@ -75,6 +78,9 @@ const AttreactionDetails = ({navigation, route}) => {
       <MapView style={styles.map} initialRegion={coords}>
         <Marker coordinate={coords} title={item?.name} />
       </MapView>
+      <Text style={styles.mapText} onPress={onMapNavigate}>
+        Show full screen map
+      </Text>
     </ScrollView>
   );
 };

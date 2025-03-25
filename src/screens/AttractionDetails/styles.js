@@ -81,7 +81,14 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 200,
     borderRadius: 10,
-    paddingBottom: 140,
+  },
+  mapText: {
+    fontWeight: 'bold',
+    fontSize: 16,
+    color: '#4681A3',
+    textAlign: 'center',
+    padding: 16,
+    marginBottom: 60,
   },
 });
 
