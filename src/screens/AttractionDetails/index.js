@@ -8,7 +8,7 @@ import {
   Pressable,
 } from 'react-native';
 import styles from './styles';
-import MapView from 'react-native-maps';
+import MapView, {Marker} from 'react-native-maps';
 import Title from '../../components/Title';
 import BackButton from '../../assets/Back.png';
 import ShareButton from '../../assets/share.png';
@@ -29,6 +29,12 @@ const AttreactionDetails = ({navigation, route}) => {
   const diffImages = item?.images?.length - slicedImage.length;
   const openingHours = ` OPEN
  ${item?.opening_time} - ${item?.closing_time}`;
+  const coords = {
+    latitude: item?.coordinates?.lat,
+    longitude: item?.coordinates?.lon,
+    latitudeDelta: 0.0009,
+    longitudeDelta: 0.0009,
+  };
 
   return (
     <ScrollView style={styles.conatiner} showsVerticalScrollIndicator={false}>
@@ -66,20 +72,9 @@ const AttreactionDetails = ({navigation, route}) => {
       </View>
       <InfoCard text={item?.address} icon={locations} />
       <InfoCard text={openingHours} icon={schedules} />
-      <MapView
-        style={{
-          width: '100%',
-          height: 200,
-          borderRadius: 10,
-          paddingBottom: 140,
-        }}
-        initialRegion={{
-          latitude: 37.78825,
-          longitude: -122.4324,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}
-      />
+      <MapView style={styles.map} initialRegion={coords}>
+        <Marker coordinate={coords} title={item?.name} />
+      </MapView>
     </ScrollView>
   );
 };

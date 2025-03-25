@@ -77,6 +77,12 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     marginTop: 8,
   },
+  map: {
+    width: '100%',
+    height: 200,
+    borderRadius: 10,
+    paddingBottom: 140,
+  },
 });
 
 export default styles;
