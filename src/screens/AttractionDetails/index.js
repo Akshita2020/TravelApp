@@ -1,6 +1,14 @@
 import React from 'react';
-import {View, Text, ImageBackground, Image, Pressable} from 'react-native';
+import {
+  ScrollView,
+  View,
+  Text,
+  ImageBackground,
+  Image,
+  Pressable,
+} from 'react-native';
 import styles from './styles';
+import MapView from 'react-native-maps';
 import Title from '../../components/Title';
 import BackButton from '../../assets/Back.png';
 import ShareButton from '../../assets/share.png';
@@ -19,9 +27,11 @@ const AttreactionDetails = ({navigation, route}) => {
   };
   const slicedImage = item?.images?.length ? item?.images?.slice(0, 5) : [];
   const diffImages = item?.images?.length - slicedImage.length;
+  const openingHours = ` OPEN
+ ${item?.opening_time} - ${item?.closing_time}`;
 
   return (
-    <View style={styles.conatiner}>
+    <ScrollView style={styles.conatiner} showsVerticalScrollIndicator={false}>
       <ImageBackground
         style={styles.mainImage}
         imageStyle={{borderRadius: 20}}
@@ -48,19 +58,29 @@ const AttreactionDetails = ({navigation, route}) => {
         </Pressable>
       </ImageBackground>
       <View style={styles.headerContainer}>
-        <View>
+        <View style={{maxWidth: '70%'}}>
           <Title text={item?.name} style={styles.title} />
           <Text style={styles.city}>{item?.city}</Text>
         </View>
         <Title style={styles.title} text={item?.entry_price} />
       </View>
       <InfoCard text={item?.address} icon={locations} />
-      <InfoCard
-        text={` OPEN
- ${item?.opening_time} - ${item?.closing_time}`}
-        icon={schedules}
+      <InfoCard text={openingHours} icon={schedules} />
+      <MapView
+        style={{
+          width: '100%',
+          height: 200,
+          borderRadius: 10,
+          paddingBottom: 140,
+        }}
+        initialRegion={{
+          latitude: 37.78825,
+          longitude: -122.4324,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }}
       />
-    </View>
+    </ScrollView>
   );
 };
 
