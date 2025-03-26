@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import styles from './styles';
 import MapView, {Marker} from 'react-native-maps';
+import Share from 'react-native-share';
 import Title from '../../components/Title';
 import BackButton from '../../assets/Back.png';
 import ShareButton from '../../assets/share.png';
@@ -28,6 +29,11 @@ const AttreactionDetails = ({navigation, route}) => {
   const onMapNavigate = () => {
     navigation.navigate('Map', {item});
   };
+const onShare = () =>{
+  Share.open({title: item?.name,  message:'hey, i wanted to share with you this amazing attraction'});
+}
+
+
   const slicedImage = item?.images?.length ? item?.images?.slice(0, 5) : [];
   const diffImages = item?.images?.length - slicedImage.length;
   const openingHours = ` OPEN
@@ -49,7 +55,7 @@ const AttreactionDetails = ({navigation, route}) => {
           <Pressable onPress={onBack} hitSlop={8} style={styles.iconConatiner}>
             <Image style={styles.icon} source={BackButton} />
           </Pressable>
-          <Pressable style={styles.iconConatiner} hitSlop={8}>
+          <Pressable onPress={onShare} style={styles.iconConatiner} hitSlop={8}>
             <Image style={styles.icon} source={ShareButton} />
           </Pressable>
         </View>
