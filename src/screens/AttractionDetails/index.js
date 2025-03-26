@@ -31,11 +31,14 @@ const AttreactionDetails = ({navigation, route}) => {
     navigation.navigate('Map', {item});
   };
   const onShare = async() => {
+      const imageWithoutParams = mainImage?.spilt('?')[0];
+      const imageParts = imageWithoutParams.spilt('.');
+      const imageExtension = imageParts[imageParts.length - 1];
    const base64Image = await ImgToBase64.getBase64String(mainImage);
     Share.open({
       title: item?.name,
       message: 'hey, i wanted to share with you this amazing attraction',
-      url:`data:image/jpg;base64,${base64Image}`,
+      url: `data:image/${imageExtension} jpg;base64,${base64Image}`,
     });
   };
 
@@ -49,6 +52,7 @@ const AttreactionDetails = ({navigation, route}) => {
     latitudeDelta: 0.0009,
     longitudeDelta: 0.0009,
   };
+
 
   return (
     <ScrollView style={styles.conatiner} showsVerticalScrollIndicator={false}>
