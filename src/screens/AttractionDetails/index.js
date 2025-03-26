@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import styles from './styles';
 import MapView, {Marker} from 'react-native-maps';
+import ImgToBase64 from 'react-native-image-base64';
 import Share from 'react-native-share';
 import Title from '../../components/Title';
 import BackButton from '../../assets/Back.png';
@@ -29,10 +30,14 @@ const AttreactionDetails = ({navigation, route}) => {
   const onMapNavigate = () => {
     navigation.navigate('Map', {item});
   };
-const onShare = () =>{
-  Share.open({title: item?.name,  message:'hey, i wanted to share with you this amazing attraction'});
-}
-
+  const onShare = async() => {
+   const base64Image = await ImgToBase64.getBase64String(mainImage);
+    Share.open({
+      title: item?.name,
+      message: 'hey, i wanted to share with you this amazing attraction',
+      url:`data:image/jpg;base64,${base64Image}`,
+    });
+  };
 
   const slicedImage = item?.images?.length ? item?.images?.slice(0, 5) : [];
   const diffImages = item?.images?.length - slicedImage.length;
